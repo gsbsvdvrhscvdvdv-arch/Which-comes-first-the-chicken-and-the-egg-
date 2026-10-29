@@ -1,0 +1,1721 @@
+```html
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ไขปริศนาพันปี: ไก่หรือไข่ อะไรเกิดก่อนกัน? (Scientific & Philosophical Analysis)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Prompt & Kanit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                        heading: ['Kanit', 'sans-serif'],
+                    },
+                    colors: {
+                        amber: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            900: '#78350f',
+                        },
+                        bio: {
+                            dark: '#0f172a',
+                            card: '#1e293b',
+                            accent: '#10b981',
+                            dna: '#3b82f6',
+                            gold: '#f59e0b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #0b0f19;
+            color: #e2e8f0;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Kanit', sans-serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Active Tab Indicator */
+        .nav-link.active {
+            color: #f59e0b;
+            border-bottom: 2px solid #f59e0b;
+        }
+        /* Pulse & Animations */
+        @keyframes dnaGlow {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4)); }
+            50% { filter: drop-shadow(0 0 18px rgba(245, 158, 11, 0.6)); }
+        }
+        .dna-animation {
+            animation: dnaGlow 4s infinite ease-in-out;
+        }
+        /* Tab Section Switcher Display Rules */
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .page-section.active-page {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-900">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand / Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-slate-950 font-bold text-2xl shadow-lg shadow-amber-500/20">
+                        <i class="fa-solid font-bold fa-egg"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-white tracking-wide block leading-tight">CHICKEN <span class="text-amber-400">vs</span> EGG</span>
+                        <span class="text-xs text-slate-400 font-light tracking-wider">บทวิเคราะห์วิวัฒนาการและปรัชญา</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-6">
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-link py-2 px-3 text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">หน้าแรก</button>
+                    <button onclick="navigateTo('science')" id="nav-science" class="nav-link py-2 px-3 text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">มุมมองวิทยาศาสตร์</button>
+                    <button onclick="navigateTo('philosophy')" id="nav-philosophy" class="nav-link py-2 px-3 text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">มุมมองปรัชญา & ศาสนา</button>
+                    <button onclick="navigateTo('timeline')" id="nav-timeline" class="nav-link py-2 px-3 text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">สายวิวัฒนาการ</button>
+                    <button onclick="navigateTo('lab')" id="nav-lab" class="nav-link py-2 px-3 text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">ห้องทดลอง & ควิซ</button>
+                    <button onclick="navigateTo('references')" id="nav-references" class="nav-link py-2 px-3 text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">เอกสารอ้างอิง</button>
+                </nav>
+
+                <!-- README Modal Toggle Button -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <button onclick="toggleReadmeModal()" class="px-3 py-1.5 rounded-lg border border-slate-600 hover:border-amber-400 text-xs text-slate-300 hover:text-amber-400 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-code"></i> README.md
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white p-2 rounded-lg focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-b border-slate-800 px-4 pt-2 pb-6 space-y-2">
+            <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-200 hover:bg-slate-800 hover:text-amber-400">หน้าแรก (Home)</button>
+            <button onclick="navigateTo('science'); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-200 hover:bg-slate-800 hover:text-amber-400">มุมมองวิทยาศาสตร์</button>
+            <button onclick="navigateTo('philosophy'); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-200 hover:bg-slate-800 hover:text-amber-400">มุมมองปรัชญา & ศาสนา</button>
+            <button onclick="navigateTo('timeline'); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-200 hover:bg-slate-800 hover:text-amber-400">ลำดับสายวิวัฒนาการ</button>
+            <button onclick="navigateTo('lab'); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-200 hover:bg-slate-800 hover:text-amber-400">ห้องทดลอง & ควิซ</button>
+            <button onclick="navigateTo('references'); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-200 hover:bg-slate-800 hover:text-amber-400">แหล่งอ้างอิงทางวิชาการ</button>
+            <button onclick="toggleReadmeModal(); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-amber-400 bg-slate-800/80 mt-2">
+                <i class="fa-solid fa-file-code mr-2"></i> เปิดดู README.md
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- ================= PAGE 1: HOME ================= -->
+        <section id="page-home" class="page-section active-page space-y-12">
+            <!-- Hero Header -->
+            <div class="relative rounded-3xl overflow-hidden glass-card p-8 md:p-14 border border-slate-700/50 shadow-2xl">
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent z-10"></div>
+                <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=1400&q=80" alt="Gallus gallus domesticus and Egg background" class="absolute inset-0 w-full h-full object-cover opacity-35 filter brightness-75">
+                
+                <div class="relative z-20 max-w-3xl space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold tracking-wider uppercase">
+                        <i class="fa-solid fa-atom"></i> การค้นพบทางวิทยาศาสตร์ & ปรัชญา
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                        ไก่ หรือ ไข่ <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-yellow-500">
+                            อะไรเกิดก่อนกันแน่?
+                        </span>
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                        ปริศนาธรรมและคำถามเชิงตรรกะที่ท้าทายมนุษยชาติตั้งแต่ยุคอริสโตเติล จนถึงการค้นพบรหัสพันธุกรรมและโปรตีนเปลือกไข่ในศตวรรษที่ 21 ร่วมค้นหาคำตอบอย่างถี่ถ้วนจากงานวิจัยทางชีววิทยาวิวัฒนาการ รังสีวิทยา เคมีโปรตีน และปรัชญาตะวันตก-ตะวันออก
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="navigateTo('science')" class="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold shadow-lg shadow-amber-500/25 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                            <i class="fa-solid fa-microscope"></i> สำรวจมุมมองชีววิทยา
+                        </button>
+                        <button onclick="navigateTo('timeline')" class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold border border-slate-600 transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-timeline"></i> ดูเส้นทางวิวัฒนาการ 340 ล้านปี
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Summary Dual Card (Egg vs Chicken View) -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Case Egg First -->
+                <div class="glass-card rounded-2xl p-8 border-l-4 border-l-amber-500 hover:border-amber-400 transition-all">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-4xl font-extrabold text-amber-400">01</span>
+                        <div class="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 text-xl">
+                            <i class="fa-solid fa-egg"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">คำตอบ: "ไข่" เกิดก่อน</h3>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
+                        ในเชิงชีววิทยาวิวัฒนาการ <strong>ไข่เยื่อหุ้มครรภ์ (Amniotic Egg)</strong> ถือกำเนิดขึ้นบนโลกเมื่อราว <strong>340 ล้านปีก่อน</strong> ในสัตว์เลื้อยคลานโบราณ ซึ่งเกิดขึ้นก่อนบรรพบุรุษนกและไก่ดั้งเดิม (<em>Gallus gallus domesticus</em>) หลายร้อยล้านปี
+                    </p>
+                    <ul class="text-xs sm:text-sm text-slate-400 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> ไข่ที่มีเปลือกแข็งเกิดขึ้นก่อนนกสายพันธุ์แรก</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> ไก่ตัวแรกเกิดจากการกลายพันธุ์ในไข่ของบรรพบุรุษ (Proto-chicken)</li>
+                    </ul>
+                </div>
+
+                <!-- Case Chicken First -->
+                <div class="glass-card rounded-2xl p-8 border-l-4 border-l-blue-500 hover:border-blue-400 transition-all">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-4xl font-extrabold text-blue-400">02</span>
+                        <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 text-xl">
+                            <i class="fa-solid fa-crow"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">คำตอบ: "ไก่" เกิดก่อน</h3>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
+                        หากระบุเจาะจงว่าเป็น <strong>"ไข่ไก่" (Chicken Egg)</strong> งานวิจัยโปรตีนในปี 2010 พบโปรตีน <strong>OC-17 (Ovocleidin-17)</strong> ซึ่งจำเป็นต่อการสร้างเปลือกไข่ไก่ สามารถสังเคราะห์ได้ใน <strong>รังไข่ของไก่เท่านั้น</strong>
+                    </p>
+                    <ul class="text-xs sm:text-sm text-slate-400 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> เปลือกไข่ไก่ต้องใช้ผลึกแคลเซียมคาร์บอเนตที่ตกผลึกด้วย OC-17</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> หากไม่มีแม่ไก่สร้างโปรตีนนี้ จะไม่เกิดเป็น "ไข่ไก่" ที่สมบูรณ์</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Interactive Voting Poll Section -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-700/60 text-center relative overflow-hidden">
+                <div class="max-w-2xl mx-auto space-y-6">
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white">คุณคิดว่าอะไรเกิดก่อนกัน? (Interactive Poll)</h3>
+                    <p class="text-slate-400 text-sm">ร่วมลงคะแนนความคิดเห็นของคุณ ก่อนอ่านรายละเอียดผลงานวิจัยเชิงลึกด้านล่าง</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2" id="poll-buttons">
+                        <button onclick="castVote('egg')" class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/40 hover:bg-amber-500/20 text-amber-300 font-semibold transition-all flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-egg text-2xl"></i> โหวต: "ไข่เกิดก่อน"
+                        </button>
+                        <button onclick="castVote('chicken')" class="p-4 rounded-xl bg-blue-500/10 border border-blue-500/40 hover:bg-blue-500/20 text-blue-300 font-semibold transition-all flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-feather text-2xl"></i> โหวต: "ไก่เกิดก่อน"
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Poll Results Visualizer -->
+                    <div id="poll-results" class="pt-4 space-y-3">
+                        <div class="flex justify-between text-xs text-slate-400 font-medium">
+                            <span id="poll-egg-label">ไข่: 58% (1,420 เสียง)</span>
+                            <span id="poll-chicken-label">ไก่: 42% (1,028 เสียง)</span>
+                        </div>
+                        <div class="w-full h-4 bg-slate-800 rounded-full overflow-hidden flex p-0.5 border border-slate-700">
+                            <div id="bar-egg" class="bg-amber-500 h-full rounded-l-full transition-all duration-700" style="width: 58%;"></div>
+                            <div id="bar-chicken" class="bg-blue-500 h-full rounded-r-full transition-all duration-700" style="width: 42%;"></div>
+                        </div>
+                        <p class="text-xs text-slate-500 italic" id="poll-status">คลิกปุ่มเพื่อบันทึกการโหวตของคุณ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 2: SCIENTIFIC VIEW ================= -->
+        <section id="page-science" class="page-section space-y-10">
+            <div class="border-b border-slate-800 pb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">มุมมองทางชีววิทยาและเคมี</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">หลักฐานทางชีววิทยาวิวัฒนาการและโปรตีน</h2>
+                <p class="text-slate-400 mt-2">วิเคราะห์ความจริงผ่าน 2 ทฤษฎีหลัก: ทางพันธุศาสตร์อณูชีววิทยา และเคมีผลึกวิทยา</p>
+            </div>
+
+            <!-- Perspective 1: Evolutionary Biology & Genetics -->
+            <div class="grid lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 text-xs font-semibold">
+                        <i class="fa-solid fa-dna"></i> Genetics & Evolution
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">1. มุมมองพันธุศาสตร์: การกลายพันธุ์ในไซโกต (Zygote Mutation)</h3>
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        ตามหลักวิวัฒนาการ ไก่บ้านในปัจจุบัน (<em>Gallus gallus domesticus</em>) วิวัฒนาการมาจาก <strong>ไก่ป่าขี้เรื้อน (Red Junglefowl - Gallus gallus)</strong> ผสมข้ามสายพันธุ์กับไก่ป่าสีเทา
+                    </p>
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        ในระหว่างการปฏิสนธิของบรรพบุรุษไก่สองตัว (Proto-chickens) เกิดการกลายพันธุ์ของ DNA (Genetic Mutation) ขึ้นในเซลล์สืบพันธุ์ สเปิร์มและไข่ที่ปฏิสนธิกันได้สร้างรหัสพันธุกรรมใหม่ที่เป็น <strong>"ไก่ตัวแรกของโลก"</strong> ขึ้นมา โดยไซโกตนั้นบรรจุอยู่ภายใน <strong>"ไข่"</strong>
+                    </p>
+                    <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700 text-xs sm:text-sm text-slate-300 space-y-1">
+                        <p class="font-semibold text-amber-400">สรุปทางพันธุศาสตร์:</p>
+                        <p>สัตว์ตัวแรกที่เป็นไก่ทางพันธุกรรม เริ่มต้นชีวิตในฐานะเซลล์เดี่ยวภายในไข่ ดังนั้น **ไข่จึงเกิดก่อนตัวไก่**</p>
+                    </div>
+                </div>
+                <div class="lg:col-span-5">
+                    <div class="glass-card p-4 rounded-2xl border border-slate-700 text-center">
+                        <img src="https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=800&q=80" alt="DNA Strand and Biology" class="rounded-xl w-full h-64 object-cover mb-3">
+                        <span class="text-xs text-slate-400 italic">ภาพจำลอง: การกลายพันธุ์ของรหัสพันธุกรรมในเซลล์สืบพันธุ์ระดับโมเลกุล</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Perspective 2: Protein OC-17 Study -->
+            <div class="grid lg:grid-cols-12 gap-8 items-center pt-8 border-t border-slate-800/80">
+                <div class="lg:col-span-5 order-2 lg:order-1">
+                    <div class="glass-card p-4 rounded-2xl border border-slate-700 text-center">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" alt="Microscope Research" class="rounded-xl w-full h-64 object-cover mb-3">
+                        <span class="text-xs text-slate-400 italic">การวิจัยระดับผลึกวิทยาโดยมหาวิทยาลัยเชฟฟิลด์และวอริก</span>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 order-1 lg:order-2 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-500/10 text-blue-400 text-xs font-semibold">
+                        <i class="fa-solid fa-flask"></i> Crystal Biochemistry
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">2. มุมมองโปรตีนเคมี: การค้นพบโปรตีน Ovocleidin-17 (OC-17)</h3>
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        ในปี ค.ศ. 2010 ทีมนักวิจัยจากมหาวิทยาลัย Sheffield และ Warwick ประเทศอังกฤษ นำโดย Prof. Colin Freeman ใช้ซูเปอร์คอมพิวเตอร์ <em class="text-amber-300">HECToR</em> จำลองกระบวนการสร้างเปลือกไข่ไก่
+                    </p>
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        ผลการวิจัยพบว่า โปรตีน <strong>OC-17</strong> ทำหน้าที่เป็นตัวเร่งการตกผลึกของแคลเซียมคาร์บอเนต (Calcite Crystals) ให้กลายเป็นเปลือกไข่แข็งภายในเวลา 24 ชั่วโมง และโปรตีน OC-17 นี้ <strong>ผลิตขึ้นได้เฉพาะในรังไข่ของแม่ไก่เท่านั้น</strong>
+                    </p>
+                    <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700 text-xs sm:text-sm text-slate-300 space-y-1">
+                        <p class="font-semibold text-blue-400">สรุปทางเคมีโปรตีน:</p>
+                        <p>ถ้าไม่มีแม่ไก่ผลิตโปรตีน OC-17 เปลือกไข่ไก่จะไม่สามารถแข็งตัวเป็นรูปเป็นร่างได้ ดังนั้น **ไก่ต้องเกิดก่อนไข่ไก่**</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-700 overflow-x-auto">
+                <h3 class="text-xl font-bold text-white mb-4">ตารางเปรียบเทียบข้อสรุปทางวิทยาศาสตร์</h3>
+                <table class="w-full text-left text-sm border-collapse min-w-[600px]">
+                    <thead>
+                        <tr class="border-b border-slate-700 text-slate-300">
+                            <th class="py-3 px-4 font-semibold">มุมมองวิจัย</th>
+                            <th class="py-3 px-4 font-semibold">คำจำกัดความของ "ไข่"</th>
+                            <th class="py-3 px-4 font-semibold">สิ่งที่เกิดก่อน</th>
+                            <th class="py-3 px-4 font-semibold">หลักฐานอ้างอิง</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                        <tr>
+                            <td class="py-3 px-4 font-medium text-amber-400">ชีววิทยาวิวัฒนาการ</td>
+                            <td class="py-3 px-4">ไข่ที่มีเปลือกหุ้ม (Amniotic Egg)</td>
+                            <td class="py-3 px-4 font-bold text-emerald-400">ไข่เกิดก่อน (~340 ล้านปี)</td>
+                            <td class="py-3 px-4 text-xs text-slate-400">ซากฟอสซิลสัตว์เลื้อยคลานยุคคาร์โบนิเฟอรัส</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-medium text-amber-400">เคมีโปรตีนผลึกวิทยา</td>
+                            <td class="py-3 px-4">ไข่ไก่โดยเฉพาะ (Chicken Egg)</td>
+                            <td class="py-3 px-4 font-bold text-blue-400">ไก่เกิดก่อน</td>
+                            <td class="py-3 px-4 text-xs text-slate-400">โครงสร้างโปรตีน OC-17 (Sheffield Univ.)</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-medium text-amber-400">พันธุศาสตร์อณูชีววิทยา</td>
+                            <td class="py-3 px-4">ไข่ไซโกตไก่ตัวแรก (First Chicken Zygote)</td>
+                            <td class="py-3 px-4 font-bold text-emerald-400">ไข่เกิดก่อน</td>
+                            <td class="py-3 px-4 text-xs text-slate-400">การกลายพันธุ์ของ DNA ในเซลล์สืบพันธุ์</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 3: PHILOSOPHICAL & RELIGIOUS VIEW ================= -->
+        <section id="page-philosophy" class="page-section space-y-10">
+            <div class="border-b border-slate-800 pb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">มุมมองทางความคิดและปรัชญา</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">ปรัชญาตะวันตก, ตะวันออก และศาสนา</h2>
+                <p class="text-slate-400 mt-2">การตีความโจทย์ไก่กับไข่ในฐานะอุปมาอุปไมยเรื่อง "เหตุและผล" (Causality) และ "จุดเริ่มต้นของจักรวาล"</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Aristotle -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-700/70 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-landmark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">ปรัชญากรีกโบราณ (Aristotle)</h3>
+                    <p class="text-xs text-amber-400 mb-3 font-mono">384 - 322 ก่อนคริสตกาล</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        อริสโตเติลสรุปว่าทั้งไก่และไข่เกิดขึ้นพร้อมกันในรูปแบบวงจรไร้จุดเริ่มต้น เขามองว่า **ความเป็นไปได้ (Potentiality)** และ **ความเป็นจริง (Actuality)** อยู่คู่กัน สิ่งที่มีอยู่แล้วในโลกคือกระบวนการธรรมชาติที่ไม่สิ้นสุด
+                    </p>
+                </div>
+
+                <!-- Plutarch -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-700/70 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-scroll"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">มอร์ราเลีย (Plutarch)</h3>
+                    <p class="text-xs text-amber-400 mb-3 font-mono">ค.ศ. 46 - 119</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        พลูตาร์คตั้งคำถามในหนังสือ <em class="text-amber-200">Table Talk</em> ว่า ปัญหานี้มิใช่เพียงเรื่องสัตว์ แต่เปรียบเสมือนปัญหาระดับจักรวาลวิทยา ว่าโลกเรามีจุดเริ่มต้นแรกสุด (First Cause) หรือเดินเป็นวงจรอนันต์
+                    </p>
+                </div>
+
+                <!-- Buddhism & Karma -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-700/70 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-yin-yang"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">พุทธปรัชญา (ปฏิจจสมุปบาท)</h3>
+                    <p class="text-xs text-amber-400 mb-3 font-mono">การเกิดขึ้นพร้อมแห่งธรรมสังขต</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        มองปัญหานี้ผ่านหลัก **ปฏิจจสมุปบาท** คือ "เมื่อสิ่งนี้มี สิ่งนี้จึงมี" ไก่และไข่เป็นเหตุปัจจัยซึ่งกันและกันแบบอิทัปปัจจยตา ไม่จำเป็นต้องหาปฐมเหตุเดี่ยว แต่เป็นสังสารวัฏแห่งเหตุและผล
+                    </p>
+                </div>
+
+                <!-- Judeo-Christian Creationism -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-700/70 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-book-bible"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">แนวคิดการสร้างโลก (Creationism)</h3>
+                    <p class="text-xs text-amber-400 mb-3 font-mono">ศาสนาเทวนิยม</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        ตามคัมภีร์ปฐมกาล (Genesis) พระเจ้าทรงสร้างสิ่งมีชีวิตและนกบนท้องฟ้าให้มีความสมบูรณ์พร้อมที่จะขยายพันธุ์ได้ทันที ดังนั้นในมุมมองเทวนิยมดั้งเดิม **สัตว์ (ไก่) จึงถูกสร้างขึ้นก่อน** แล้วจึงออกไข่
+                    </p>
+                </div>
+
+                <!-- Modern Causality Paradox -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-700/70 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-infinity"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">ตรรกศาสตร์สมัยใหม่ & Circular Logic</h3>
+                    <p class="text-xs text-amber-400 mb-3 font-mono">การอ้างเหตุผลแบบวงกลม</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        "ไก่มาจากไข่ แต่ไข่มาจากไก่" เป็นตัวอย่างคลาสสิกของ **Circular Reasoning** นักตรรกศาสตร์ใช้ตัวอย่างนี้เพื่อชี้ให้เห็นข้อจำกัดของภาษาและการตั้งคำถามที่ไม่นิยามขอบเขตให้ชัดเจน
+                    </p>
+                </div>
+
+                <!-- Quantum Physics Paradox -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-700/70 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-atom"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">ควอนตัมฟิสิกส์ (Indefinite Causal Order)</h3>
+                    <p class="text-xs text-amber-400 mb-3 font-mono">University of Queensland (2018)</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        การทดลองทางควอนตัมแสดงให้เห็นว่า ในระดับอนุภาคย่อย เหตุและผลสามารถเกิดขึ้นพร้อมกันได้โดยไม่มีลำดับเวลาที่แน่นอน (Indefinite Causal Order) เสมือนทั้งสองเกิดพร้อมกัน
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 4: EVOLUTIONARY TIMELINE ================= -->
+        <section id="page-timeline" class="page-section space-y-10">
+            <div class="border-b border-slate-800 pb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">ลำดับเวลาทางธรณีวิทยา</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">เส้นทางวิวัฒนาการ 340 ล้านปี</h2>
+                <p class="text-slate-400 mt-2">คลิกที่แต่ละช่วงเวลาเพื่อดูรายละเอียดซากฟอสซิลและการเปลี่ยนแปลงทางพันธุกรรม</p>
+            </div>
+
+            <!-- Timeline Visualiser Component -->
+            <div class="relative pl-6 border-l-2 border-amber-500/40 space-y-10 ml-2 sm:ml-6">
+                
+                <!-- Event 1 -->
+                <div class="relative group cursor-pointer" onclick="toggleTimelineDetail('time-1')">
+                    <div class="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-slate-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-700 hover:border-amber-500/60 transition-all">
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">340 ล้านปีก่อน (ยุคคาร์โบนิเฟอรัส)</span>
+                        <h3 class="text-xl font-bold text-white mt-2">การกำเนิดไข่ที่มีเปลือกหุ้ม (Amniotic Egg)</h3>
+                        <p class="text-slate-300 text-sm mt-1">สัตว์เลื้อยคลานโบราณวิวัฒนาการไข่เปลือกนิ่มและเปลือกแข็งขึ้นมาเป็นครั้งแรก ทำให้พวกมันสามารถขึ้นมาวางไข่บนบกได้โดยไม่ต้องพึ่งพิงน้ำเหมือนสัตว์ครึ่งบกครึ่งน้ำ</p>
+                        
+                        <div id="time-1" class="hidden mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 space-y-2">
+                            <p class="text-amber-300 font-semibold">ข้อเท็จจริงสำคัญ:</p>
+                            <p>นี่คือจุดเริ่มต้นของ "ไข่" ในความหมายทางชีววิทยา ซึ่งเกิดขึ้นก่อนที่จะมีนกหรือไก่ถือกำเนิดขึ้นบนโลกมากกว่า 300 ล้านปี</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="relative group cursor-pointer" onclick="toggleTimelineDetail('time-2')">
+                    <div class="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-slate-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-700 hover:border-amber-500/60 transition-all">
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">150 ล้านปีก่อน (ยุคจูแรสซิก)</span>
+                        <h3 class="text-xl font-bold text-white mt-2">อาร์เคออปเทอริกซ์ (Archaeopteryx) - รอยต่อระหว่างไดโนเสาร์และนก</h3>
+                        <p class="text-slate-300 text-sm mt-1">ไดโนเสาร์เทอโรพอด (Theropod) เริ่มพัฒนานกมีขนโบราณ วางไข่เปลือกแข็งที่มีโครงสร้างผลึกแคลเซียมคล้ายนกปัจจุบัน</p>
+                        
+                        <div id="time-2" class="hidden mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 space-y-2">
+                            <p class="text-amber-300 font-semibold">ข้อเท็จจริงสำคัญ:</p>
+                            <p>ฟอสซิล Archaeopteryx ยืนยันว่าสัตว์กลุ่มสายพันธุ์นกทั้งหมดสืบเชื้อสายมาจากไดโนเสาร์กินเนื้อขนาดเล็ก และพวกมันสืบพันธุ์ด้วยการวางไข่แล้ว</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="relative group cursor-pointer" onclick="toggleTimelineDetail('time-3')">
+                    <div class="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-slate-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-700 hover:border-amber-500/60 transition-all">
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">58,000 ปีก่อน</span>
+                        <h3 class="text-xl font-bold text-white mt-2">บรรพบุรุษไก่ป่า (Proto-Chicken) และการกลายพันธุ์ครั้งประวัติศาสตร์</h3>
+                        <p class="text-slate-300 text-sm mt-1">ไก่ป่าขี้เรื้อน (Gallus gallus) ผสมพันธุ์และเกิดการปฏิสนธิที่มีการกลายพันธุ์ของ DNA ในระดับไซโกต เกิดเป็นรหัสพันธุกรรมของไก่บ้านสายพันธุ์ใหม่</p>
+                        
+                        <div id="time-3" class="hidden mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 space-y-2">
+                            <p class="text-amber-300 font-semibold">ข้อเท็จจริงสำคัญ:</p>
+                            <p>การผสมและกลายพันธุ์นี้เกิดขึ้นภายในฟองไข่ ทำให้ **"ไข่ไก่ใบแรก"** เกิดขึ้นก่อนที่จะฟักออกมาเป็น **"ไก่บ้านตัวแรก"**</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 4 -->
+                <div class="relative group cursor-pointer" onclick="toggleTimelineDetail('time-4')">
+                    <div class="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-slate-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-700 hover:border-amber-500/60 transition-all">
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">8,000 ปีก่อน - ปัจจุบัน</span>
+                        <h3 class="text-xl font-bold text-white mt-2">การนำมาเลี้ยงเป็นสัตว์บ้าน (Domestication of Chickens)</h3>
+                        <p class="text-slate-300 text-sm mt-1">มนุษย์ในเอเชียตะวันออกเฉียงใต้และอินเดียเริ่มนำไก่ป่ามาเลี้ยง และคัดเลือกสายพันธุ์จนแพร่กระจายไปทั่วโลกมากกว่า 33,000 ล้านตัวในปัจจุบัน</p>
+                        
+                        <div id="time-4" class="hidden mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 space-y-2">
+                            <p class="text-amber-300 font-semibold">ข้อเท็จจริงสำคัญ:</p>
+                            <p>การคัดเลือกสายพันธุ์โดยมนุษย์ทำให้ไก่บ้านในปัจจุบันสามารถออกไข่ได้เกือบทุกวัน แตกต่างจากไก่ป่าในอดีตอย่างสิ้นเชิง</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= PAGE 5: INTERACTIVE LAB & QUIZ ================= -->
+        <section id="page-lab" class="page-section space-y-12">
+            <div class="border-b border-slate-800 pb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">การทดลองและการทดสอบ</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">ห้องทดลองพันธุกรรม & ควิซวัดความรู้</h2>
+                <p class="text-slate-400 mt-2">จำลองการสร้างไข่ด้วยโปรตีน OC-17 และทดสอบความเข้าใจของคุณจากงานวิจัย</p>
+            </div>
+
+            <!-- Interactive Simulator Tool -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-700 space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-flask-vial"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">เครื่องจำลองสังเคราะห์เปลือกไข่ (OC-17 Protein Lab)</h3>
+                        <p class="text-xs text-slate-400">ทดลองปรับเปลี่ยนระดับโปรตีน OC-17 และแคลเซียมเพื่อสังเคราะห์เปลือกไข่ไก่</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center pt-2">
+                    <div class="space-y-5">
+                        <!-- Slider 1 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+                                <span>ระดับโปรตีน OC-17 (จากรังไข่ไก่)</span>
+                                <span id="oc17-val-label" class="text-amber-400">50%</span>
+                            </div>
+                            <input type="range" id="oc17-slider" min="0" max="100" value="50" oninput="updateEggSim()" class="w-full accent-amber-500 bg-slate-800 rounded-lg cursor-pointer h-2">
+                        </div>
+
+                        <!-- Slider 2 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+                                <span>ความหนาแน่นแคลเซียมคาร์บอเนต (Calcite)</span>
+                                <span id="calcite-val-label" class="text-blue-400">50%</span>
+                            </div>
+                            <input type="range" id="calcite-slider" min="0" max="100" value="50" oninput="updateEggSim()" class="w-full accent-blue-500 bg-slate-800 rounded-lg cursor-pointer h-2">
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-xs space-y-1">
+                            <span class="text-slate-400">สถานะการสังเคราะห์:</span>
+                            <p id="sim-status-text" class="font-bold text-amber-400">กำลังผสมสารละลายผลึก...</p>
+                        </div>
+                    </div>
+
+                    <!-- Visualizer Canvas Display -->
+                    <div class="flex flex-col items-center justify-center p-6 bg-slate-950/80 rounded-2xl border border-slate-800 min-h-[220px]">
+                        <div id="sim-egg-graphic" class="w-32 h-44 rounded-[50%_50%_50%_50%_/_60%_60%_40%_40%] bg-gradient-to-b from-amber-100 to-amber-300 transition-all duration-300 shadow-xl flex items-center justify-center text-slate-900 font-bold text-xs p-4 text-center">
+                            เปลือกไข่สมบูรณ์
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Engine Section -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-700 space-y-6">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap text-amber-400"></i> ควิซทดสอบความเข้าใจ (5 ข้อ)
+                    </h3>
+                    <span id="quiz-score-badge" class="px-3 py-1 rounded-full bg-slate-800 text-xs font-semibold text-amber-400 border border-slate-700">คะแนน: 0/5</span>
+                </div>
+
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Quiz Item 1 -->
+                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
+                        <p class="text-sm font-semibold text-white">1. โปรตีน Ovocleidin-17 (OC-17) มีบทบาทสำคัญอย่างไรในการไขปริศนานี้?</p>
+                        <div class="space-y-2 text-xs">
+                            <button onclick="checkAnswer(1, 'A')" class="q-btn-1-A w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">A. เป็นยีนที่ควบคุมการฟักไข่ของไก่ป่า</button>
+                            <button onclick="checkAnswer(1, 'B')" class="q-btn-1-B w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">B. เป็นโปรตีนเร่งการตกผลึกแคลเซียมสร้างเปลือกไข่ ซึ่งพบเฉพาะในรังไข่ไก่</button>
+                            <button onclick="checkAnswer(1, 'C')" class="q-btn-1-C w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">C. เป็นสารเคมีที่พบเฉพาะในไข่ไดโนเสาร์</button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Item 2 -->
+                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
+                        <p class="text-sm font-semibold text-white">2. หากมองในเชิงชีววิทยาวิวัฒนาการ "ไข่ที่มีเปลือกหุ้ม" (Amniotic Egg) เกิดขึ้นเมื่อกี่ปีก่อน?</p>
+                        <div class="space-y-2 text-xs">
+                            <button onclick="checkAnswer(2, 'A')" class="q-btn-2-A w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">A. ประมาณ 10,000 ปีก่อน</button>
+                            <button onclick="checkAnswer(2, 'B')" class="q-btn-2-B w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">B. ประมาณ 340 ล้านปีก่อน</button>
+                            <button onclick="checkAnswer(2, 'C')" class="q-btn-2-C w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">C. พร้อมกับการถือกำเนิดมนุษย์ยุคแรก</button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Item 3 -->
+                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
+                        <p class="text-sm font-semibold text-white">3. ในทางพันธุศาสตร์ ไก่ตัวแรกของโลกถือกำเนิดขึ้นจากอะไร?</p>
+                        <div class="space-y-2 text-xs">
+                            <button onclick="checkAnswer(3, 'A')" class="q-btn-3-A w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">A. การกลายพันธุ์ของ DNA ในเซลล์ไซโกตภายในไข่ของบรรพบุรุษนก (Proto-chicken)</button>
+                            <button onclick="checkAnswer(3, 'B')" class="q-btn-3-B w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">B. แม่ไก่ป่าโตเต็มวัยเปลี่ยนสายพันธุ์กะทันหัน</button>
+                            <button onclick="checkAnswer(3, 'C')" class="q-btn-3-C w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">C. เกิดจากการสังเคราะห์ในห้องทดลองยุคโบราณ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 6: REFERENCES ================= -->
+        <section id="page-references" class="page-section space-y-10">
+            <div class="border-b border-slate-800 pb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">การอ้างอิงทางวิชาการ</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">แหล่งข้อมูลและงานวิจัยที่น่าเชื่อถือ</h2>
+                <p class="text-slate-400 mt-2">รวบรวมวารสารวิชาการ มหาวิทยาลัยวิจัย และผลงานตีพิมพ์ระดับสากล</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Ref 1 -->
+                <div class="glass-card p-5 rounded-xl border border-slate-800 hover:border-slate-700 transition-all flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                    <div class="space-y-1">
+                        <span class="text-xs text-amber-400 font-mono font-bold">[1] University of Sheffield & Warwick (2010)</span>
+                        <h4 class="text-white font-semibold text-base">Structural Control of Crystal Nucleation by Eggshell Protein OC-17</h4>
+                        <p class="text-xs text-slate-400">การศึกษาโครงสร้างคริสตัลและการจำลองด้วยซูเปอร์คอมพิวเตอร์ HECToR เผยบทบาทของโปรตีน OC-17 ในรังไข่ไก่</p>
+                    </div>
+                    <a href="https://www.sciencedaily.com/releases/2010/07/100713085702.htm" target="_blank" rel="noopener noreferrer" class="shrink-0 px-4 py-2 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-xs font-semibold text-slate-300 transition-all text-center">
+                        อ่านบทความ <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Ref 2 -->
+                <div class="glass-card p-5 rounded-xl border border-slate-800 hover:border-slate-700 transition-all flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                    <div class="space-y-1">
+                        <span class="text-xs text-amber-400 font-mono font-bold">[2] Cell & Nature Evolution Journals</span>
+                        <h4 class="text-white font-semibold text-base">The Amniote Egg and Early Evolutionary Radiation</h4>
+                        <p class="text-xs text-slate-400">งานวิจัยทางชีววิทยาบรรพกาลวิเคราะห์ซากฟอสซิลไข่เยื่อหุ้มครรภ์ยุคคาร์โบนิเฟอรัส (340 ล้านปีก่อน)</p>
+                    </div>
+                    <a href="https://www.nature.com" target="_blank" rel="noopener noreferrer" class="shrink-0 px-4 py-2 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-xs font-semibold text-slate-300 transition-all text-center">
+                        Nature Journal <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Ref 3 -->
+                <div class="glass-card p-5 rounded-xl border border-slate-800 hover:border-slate-700 transition-all flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                    <div class="space-y-1">
+                        <span class="text-xs text-amber-400 font-mono font-bold">[3] Royal Society Open Science (2018)</span>
+                        <h4 class="text-white font-semibold text-base">Experimental verification of indefinite causal structures in Quantum Physics</h4>
+                        <p class="text-xs text-slate-400">งานวิจัยจาก University of Queensland ประเทศออสเตรเลีย ว่าด้วยลำดับเหตุและผลที่ไม่แน่นอนในระดับฟิสิกส์ควอนตัม</p>
+                    </div>
+                    <a href="https://royalsocietypublishing.org" target="_blank" rel="noopener noreferrer" class="shrink-0 px-4 py-2 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-xs font-semibold text-slate-300 transition-all text-center">
+                        Royal Society <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Ref 4 -->
+                <div class="glass-card p-5 rounded-xl border border-slate-800 hover:border-slate-700 transition-all flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                    <div class="space-y-1">
+                        <span class="text-xs text-amber-400 font-mono font-bold">[4] Book Reference</span>
+                        <h4 class="text-white font-semibold text-base">The Magic of Reality by Richard Dawkins</h4>
+                        <p class="text-xs text-slate-400">คำอธิบายเชิงชีววิทยาวิวัฒนาการเกี่ยวกับแนวคิดสายพันธุ์และการเปลี่ยนผ่านของ DNA ในสิ่งมีชีวิต</p>
+                    </div>
+                    <span class="shrink-0 text-xs text-slate-500 font-mono">ISBN: 978-1439192818</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-slate-950/80 py-8 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-3">
+            <p>© 2026 Interactive Science & Philosophy Research Hub. ทั้งหมดเพื่อการศึกษาและให้ความรู้.</p>
+            <p class="text-slate-600">สร้างด้วย HTML5 + Tailwind CSS + Vanilla JavaScript (Single File Web App)</p>
+        </div>
+    </footer>
+
+    <!-- README MODAL DIALOG CONTAINER -->
+    <div id="readme-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-card w-full max-w-3xl rounded-2xl border border-slate-700 max-h-[85vh] flex flex-col shadow-2xl">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800">
+                <div class="flex items-center gap-2 text-amber-400 font-bold text-base">
+                    <i class="fa-solid fa-file-code"></i> README.md (คู่มือและโครงสร้างโครงการ)
+                </div>
+                <button onclick="toggleReadmeModal()" class="text-slate-400 hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Body (Markdown Content Preview) -->
+            <div class="p-6 overflow-y-auto space-y-4 text-slate-300 text-sm leading-relaxed font-mono bg-slate-900/90">
+                <h1 class="text-xl font-bold text-amber-400 font-sans border-b border-slate-800 pb-2">Chicken vs Egg Research Single-Page Platform</h1>
+                
+                <h3 class="text-base font-semibold text-white font-sans mt-4">📌 ภาพรวมโครงการ</h3>
+                <p>เว็บไซต์ให้ความรู้เชิงลึกเปรียบเทียบข้อสรุปทางวิทยาศาสตร์ ปรัชญา และศาสนา ในประเด็น "ไก่กับไข่อะไรเกิดก่อนกัน" ในรูปแบบ SPA Single HTML File ออกแบบตามหลัก Responsive Design และพร้อมติดตั้งบน GitHub Pages</p>
+
+                <h3 class="text-base font-semibold text-white font-sans mt-4">📂 ฟีเจอร์หลัก (Features)</h3>
+                <ul class="list-disc pl-5 space-y-1 text-xs">
+                    <td><strong>Multi-Page Single File:</strong> สลับหน้าได้อย่างลื่นไหลผ่าน JavaScript SPA Navigation Engine</td>
+                    <td><strong>Interactive Voting Poll:</strong> ระบบโหวตความคิดเห็นเรียลไทม์พร้อมการคำนวณสัดส่วน %</td>
+                    <td><strong>Evolution Timeline:</strong> ย้อนเวลา 340 ล้านปี พร้อมการแสดงผลข้อมูลแบบซ่อน-ขยาย</td>
+                    <td><strong>Protein Lab Simulator:</strong> เครื่องจำลองผลของโปรตีน OC-17 ต่อการตกผลึกเปลือกไข่</td>
+                    <td><strong>Quiz Engine:</strong> ระบบแบบทดสอบวัดความรู้พร้อมคำนวณคะแนนอัตโนมัติ</td>
+                </ul>
+
+                <h3 class="text-base font-semibold text-white font-sans mt-4">🛠 เทคโนโลยีที่ใช้</h3>
+                <p class="text-xs">HTML5, Tailwind CSS CDN, FontAwesome 6, Google Fonts (Prompt & Kanit), Pure Vanilla JavaScript (ES6)</p>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-3 border-t border-slate-800 flex justify-end">
+                <button onclick="toggleReadmeModal()" class="px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs">
+                    ปิดหน้าต่าง
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC & ROUTING ENGINE -->
+    <script>
+        // --- State Management ---
+        let votes = { egg: 1420, chicken: 1028 };
+        let quizAnswers = { 1: false, 2: false, 3: false };
+        let userScore = 0;
+
+        // --- Page Router Engine ---
+        function navigateTo(pageId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active-page'));
+
+            // Show selected section
+            const targetSection = document.getElementById('page-' + pageId);
+            if (targetSection) {
+                targetSection.classList.add('active-page');
+            }
+
+            // Update Nav Active Styling
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- Mobile Menu Toggle ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // --- Voting Poll Logic ---
+        function castVote(type) {
+            if (type === 'egg') votes.egg++;
+            if (type === 'chicken') votes.chicken++;
+
+            const total = votes.egg + votes.chicken;
+            const eggPct = Math.round((votes.egg / total) * 100);
+            const chickenPct = 100 - eggPct;
+
+            document.getElementById('bar-egg').style.width = eggPct + '%';
+            document.getElementById('bar-chicken').style.width = chickenPct + '%';
+
+            document.getElementById('poll-egg-label').innerText = `ไข่: ${eggPct}% (${votes.egg.toLocaleString()} เสียง)`;
+            document.getElementById('poll-chicken-label').innerText = `ไก่: ${chickenPct}% (${votes.chicken.toLocaleString()} เสียง)`;
+            
+            document.getElementById('poll-status').innerText = 'ขอบคุณสำหรับโหวตของคุณ! ผลโหวตอัปเดตแล้ว';
+            document.getElementById('poll-status').classList.add('text-amber-400');
+        }
+
+        // --- Timeline Detail Accordion Toggle ---
+        function toggleTimelineDetail(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.toggle('hidden');
+            }
+        }
+
+        // --- OC-17 Protein Lab Simulator Logic ---
+        function updateEggSim() {
+            const oc17 = parseInt(document.getElementById('oc17-slider').value);
+            const calcite = parseInt(document.getElementById('calcite-slider').value);
+            
+            document.getElementById('oc17-val-label').innerText = oc17 + '%';
+            document.getElementById('calcite-val-label').innerText = calcite + '%';
+
+            const eggGraphic = document.getElementById('sim-egg-graphic');
+            const statusText = document.getElementById('sim-status-text');
+
+            if (oc17 < 30) {
+                eggGraphic.style.opacity = '0.3';
+                eggGraphic.style.borderRadius = '30%';
+                eggGraphic.innerText = 'เปลือกไข่นิ่ม/ไม่ขึ้นรูป (ขาด OC-17)';
+                eggGraphic.className = "w-32 h-44 bg-red-900/50 text-red-200 transition-all duration-300 flex items-center justify-center text-xs p-2 text-center rounded-2xl border border-red-500/50";
+                statusText.innerText = '⚠️ การตกผลึกล้มเหลว: ปริมาณโปรตีน OC-17 จากรังไข่ไม่เพียงพอ';
+                statusText.className = 'font-bold text-red-400';
+            } else if (calcite < 30) {
+                eggGraphic.style.opacity = '0.5';
+                eggGraphic.innerText = 'เปลือกไข่เปราะบาง';
+                eggGraphic.className = "w-32 h-44 bg-yellow-900/50 text-yellow-200 transition-all duration-300 flex items-center justify-center text-xs p-2 text-center rounded-2xl border border-yellow-500/50";
+                statusText.innerText = '⚠️ แคลเซียมต่ำ: เปลือกไข่แตกหักง่าย ไม่สามารถฟักเป็นตัวได้';
+                statusText.className = 'font-bold text-yellow-400';
+            } else {
+                eggGraphic.style.opacity = '1';
+                eggGraphic.innerText = 'ไข่ไก่สมบูรณ์แข็งแรง';
+                eggGraphic.className = "w-32 h-44 rounded-[50%_50%_50%_50%_/_60%_60%_40%_40%] bg-gradient-to-b from-amber-100 to-amber-300 text-slate-900 shadow-xl transition-all duration-300 flex items-center justify-center font-bold text-xs p-4 text-center";
+                statusText.innerText = '✅ สังเคราะห์เปลือกไข่ไก่สำเร็จ! ผลึก Calcite เรียงตัวสมบูรณ์ด้วย OC-17';
+                statusText.className = 'font-bold text-emerald-400';
+            }
+        }
+
+        // --- Quiz System Logic ---
+        const correctAnswers = { 1: 'B', 2: 'B', 3: 'A' };
+
+        function checkAnswer(qNum, choice) {
+            const isCorrect = choice === correctAnswers[qNum];
+            const btnKey = `.q-btn-${qNum}-${choice}`;
+            const btn = document.querySelector(btnKey);
+
+            if (isCorrect) {
+                btn.classList.remove('bg-slate-800');
+                btn.classList.add('bg-emerald-600', 'text-white', 'font-bold');
+                if (!quizAnswers[qNum]) {
+                    userScore++;
+                    quizAnswers[qNum] = true;
+                }
+            } else {
+                btn.classList.remove('bg-slate-800');
+                btn.classList.add('bg-red-600', 'text-white');
+            }
+
+            document.getElementById('quiz-score-badge').innerText = `คะแนน: ${userScore}/3`;
+        }
+
+        // --- README Modal Handler ---
+        function toggleReadmeModal() {
+            const modal = document.getElementById('readme-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Initialize default active page
+        window.onload = function() {
+            navigateTo('home');
+            updateEggSim();
+        }
+    </script>
+</body>
+</html>
+``````html
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ไขปริศนาพันปี: ไก่หรือไข่ อะไรเกิดก่อนกัน? (Scientific & Philosophical Analysis)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Prompt & Kanit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                        heading: ['Kanit', 'sans-serif'],
+                    },
+                    colors: {
+                        amber: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            900: '#78350f',
+                        },
+                        bio: {
+                            dark: '#0f172a',
+                            card: '#1e293b',
+                            accent: '#10b981',
+                            dna: '#3b82f6',
+                            gold: '#f59e0b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #0b0f19;
+            color: #e2e8f0;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Kanit', sans-serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Active Tab Indicator */
+        .nav-link.active {
+            color: #f59e0b;
+            border-bottom: 2px solid #f59e0b;
+        }
+        /* Pulse & Animations */
+        @keyframes dnaGlow {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4)); }
+            50% { filter: drop-shadow(0 0 18px rgba(245, 158, 11, 0.6)); }
+        }
+        .dna-animation {
+            animation: dnaGlow 4s infinite ease-in-out;
+        }
+        /* Tab Section Switcher Display Rules */
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .page-section.active-page {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-900">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand / Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-slate-950 font-bold text-2xl shadow-lg shadow-amber-500/20">
+                        <i class="fa-solid font-bold fa-egg"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-white tracking-wide block leading-tight">CHICKEN <span class="text-amber-400">vs</span> EGG</span>
+                        <span class="text-xs text-slate-400 font-light tracking-wider">บทวิเคราะห์วิวัฒนาการและปรัชญา</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-6">
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-link py-2 px-3 text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">หน้าแรก</button>
+                    <button onclick="navigateTo('science')" id="nav-science" class="nav-link py-2 px-3 text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">มุมมองวิทยาศาสตร์</button>
+                    <button onclick="navigateTo('philosophy')" id="nav-philosophy" class="nav-link py-2 px-3 text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">มุมมองปรัชญา & ศาสนา</button>
+                    <button onclick="navigateTo('timeline')" id="nav-timeline" class="nav-link py-2 px-3 text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">สายวิวัฒนาการ</button>
+                    <button onclick="navigateTo('lab')" id="nav-lab" class="nav-link py-2 px-3 text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">ห้องทดลอง & ควิซ</button>
+                    <button onclick="navigateTo('references')" id="nav-references" class="nav-link py-2 px-3 text-sm font-medium text-slate-300 hover:text-amber-400 transition-colors">เอกสารอ้างอิง</button>
+                </nav>
+
+                <!-- README Modal Toggle Button -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <button onclick="toggleReadmeModal()" class="px-3 py-1.5 rounded-lg border border-slate-600 hover:border-amber-400 text-xs text-slate-300 hover:text-amber-400 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-code"></i> README.md
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white p-2 rounded-lg focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-b border-slate-800 px-4 pt-2 pb-6 space-y-2">
+            <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-200 hover:bg-slate-800 hover:text-amber-400">หน้าแรก (Home)</button>
+            <button onclick="navigateTo('science'); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-200 hover:bg-slate-800 hover:text-amber-400">มุมมองวิทยาศาสตร์</button>
+            <button onclick="navigateTo('philosophy'); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-200 hover:bg-slate-800 hover:text-amber-400">มุมมองปรัชญา & ศาสนา</button>
+            <button onclick="navigateTo('timeline'); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-200 hover:bg-slate-800 hover:text-amber-400">ลำดับสายวิวัฒนาการ</button>
+            <button onclick="navigateTo('lab'); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-200 hover:bg-slate-800 hover:text-amber-400">ห้องทดลอง & ควิซ</button>
+            <button onclick="navigateTo('references'); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-200 hover:bg-slate-800 hover:text-amber-400">แหล่งอ้างอิงทางวิชาการ</button>
+            <button onclick="toggleReadmeModal(); toggleMobileMenu()" class="block w-full text-left py-2.5 px-3 rounded-lg text-amber-400 bg-slate-800/80 mt-2">
+                <i class="fa-solid fa-file-code mr-2"></i> เปิดดู README.md
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- ================= PAGE 1: HOME ================= -->
+        <section id="page-home" class="page-section active-page space-y-12">
+            <!-- Hero Header -->
+            <div class="relative rounded-3xl overflow-hidden glass-card p-8 md:p-14 border border-slate-700/50 shadow-2xl">
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent z-10"></div>
+                <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=1400&q=80" alt="Gallus gallus domesticus and Egg background" class="absolute inset-0 w-full h-full object-cover opacity-35 filter brightness-75">
+                
+                <div class="relative z-20 max-w-3xl space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold tracking-wider uppercase">
+                        <i class="fa-solid fa-atom"></i> การค้นพบทางวิทยาศาสตร์ & ปรัชญา
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                        ไก่ หรือ ไข่ <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-yellow-500">
+                            อะไรเกิดก่อนกันแน่?
+                        </span>
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                        ปริศนาธรรมและคำถามเชิงตรรกะที่ท้าทายมนุษยชาติตั้งแต่ยุคอริสโตเติล จนถึงการค้นพบรหัสพันธุกรรมและโปรตีนเปลือกไข่ในศตวรรษที่ 21 ร่วมค้นหาคำตอบอย่างถี่ถ้วนจากงานวิจัยทางชีววิทยาวิวัฒนาการ รังสีวิทยา เคมีโปรตีน และปรัชญาตะวันตก-ตะวันออก
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="navigateTo('science')" class="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold shadow-lg shadow-amber-500/25 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                            <i class="fa-solid fa-microscope"></i> สำรวจมุมมองชีววิทยา
+                        </button>
+                        <button onclick="navigateTo('timeline')" class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold border border-slate-600 transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-timeline"></i> ดูเส้นทางวิวัฒนาการ 340 ล้านปี
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Summary Dual Card (Egg vs Chicken View) -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Case Egg First -->
+                <div class="glass-card rounded-2xl p-8 border-l-4 border-l-amber-500 hover:border-amber-400 transition-all">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-4xl font-extrabold text-amber-400">01</span>
+                        <div class="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 text-xl">
+                            <i class="fa-solid fa-egg"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">คำตอบ: "ไข่" เกิดก่อน</h3>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
+                        ในเชิงชีววิทยาวิวัฒนาการ <strong>ไข่เยื่อหุ้มครรภ์ (Amniotic Egg)</strong> ถือกำเนิดขึ้นบนโลกเมื่อราว <strong>340 ล้านปีก่อน</strong> ในสัตว์เลื้อยคลานโบราณ ซึ่งเกิดขึ้นก่อนบรรพบุรุษนกและไก่ดั้งเดิม (<em>Gallus gallus domesticus</em>) หลายร้อยล้านปี
+                    </p>
+                    <ul class="text-xs sm:text-sm text-slate-400 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> ไข่ที่มีเปลือกแข็งเกิดขึ้นก่อนนกสายพันธุ์แรก</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> ไก่ตัวแรกเกิดจากการกลายพันธุ์ในไข่ของบรรพบุรุษ (Proto-chicken)</li>
+                    </ul>
+                </div>
+
+                <!-- Case Chicken First -->
+                <div class="glass-card rounded-2xl p-8 border-l-4 border-l-blue-500 hover:border-blue-400 transition-all">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-4xl font-extrabold text-blue-400">02</span>
+                        <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 text-xl">
+                            <i class="fa-solid fa-crow"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">คำตอบ: "ไก่" เกิดก่อน</h3>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
+                        หากระบุเจาะจงว่าเป็น <strong>"ไข่ไก่" (Chicken Egg)</strong> งานวิจัยโปรตีนในปี 2010 พบโปรตีน <strong>OC-17 (Ovocleidin-17)</strong> ซึ่งจำเป็นต่อการสร้างเปลือกไข่ไก่ สามารถสังเคราะห์ได้ใน <strong>รังไข่ของไก่เท่านั้น</strong>
+                    </p>
+                    <ul class="text-xs sm:text-sm text-slate-400 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> เปลือกไข่ไก่ต้องใช้ผลึกแคลเซียมคาร์บอเนตที่ตกผลึกด้วย OC-17</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> หากไม่มีแม่ไก่สร้างโปรตีนนี้ จะไม่เกิดเป็น "ไข่ไก่" ที่สมบูรณ์</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Interactive Voting Poll Section -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-700/60 text-center relative overflow-hidden">
+                <div class="max-w-2xl mx-auto space-y-6">
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white">คุณคิดว่าอะไรเกิดก่อนกัน? (Interactive Poll)</h3>
+                    <p class="text-slate-400 text-sm">ร่วมลงคะแนนความคิดเห็นของคุณ ก่อนอ่านรายละเอียดผลงานวิจัยเชิงลึกด้านล่าง</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2" id="poll-buttons">
+                        <button onclick="castVote('egg')" class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/40 hover:bg-amber-500/20 text-amber-300 font-semibold transition-all flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-egg text-2xl"></i> โหวต: "ไข่เกิดก่อน"
+                        </button>
+                        <button onclick="castVote('chicken')" class="p-4 rounded-xl bg-blue-500/10 border border-blue-500/40 hover:bg-blue-500/20 text-blue-300 font-semibold transition-all flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-feather text-2xl"></i> โหวต: "ไก่เกิดก่อน"
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Poll Results Visualizer -->
+                    <div id="poll-results" class="pt-4 space-y-3">
+                        <div class="flex justify-between text-xs text-slate-400 font-medium">
+                            <span id="poll-egg-label">ไข่: 58% (1,420 เสียง)</span>
+                            <span id="poll-chicken-label">ไก่: 42% (1,028 เสียง)</span>
+                        </div>
+                        <div class="w-full h-4 bg-slate-800 rounded-full overflow-hidden flex p-0.5 border border-slate-700">
+                            <div id="bar-egg" class="bg-amber-500 h-full rounded-l-full transition-all duration-700" style="width: 58%;"></div>
+                            <div id="bar-chicken" class="bg-blue-500 h-full rounded-r-full transition-all duration-700" style="width: 42%;"></div>
+                        </div>
+                        <p class="text-xs text-slate-500 italic" id="poll-status">คลิกปุ่มเพื่อบันทึกการโหวตของคุณ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 2: SCIENTIFIC VIEW ================= -->
+        <section id="page-science" class="page-section space-y-10">
+            <div class="border-b border-slate-800 pb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">มุมมองทางชีววิทยาและเคมี</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">หลักฐานทางชีววิทยาวิวัฒนาการและโปรตีน</h2>
+                <p class="text-slate-400 mt-2">วิเคราะห์ความจริงผ่าน 2 ทฤษฎีหลัก: ทางพันธุศาสตร์อณูชีววิทยา และเคมีผลึกวิทยา</p>
+            </div>
+
+            <!-- Perspective 1: Evolutionary Biology & Genetics -->
+            <div class="grid lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 text-xs font-semibold">
+                        <i class="fa-solid fa-dna"></i> Genetics & Evolution
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">1. มุมมองพันธุศาสตร์: การกลายพันธุ์ในไซโกต (Zygote Mutation)</h3>
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        ตามหลักวิวัฒนาการ ไก่บ้านในปัจจุบัน (<em>Gallus gallus domesticus</em>) วิวัฒนาการมาจาก <strong>ไก่ป่าขี้เรื้อน (Red Junglefowl - Gallus gallus)</strong> ผสมข้ามสายพันธุ์กับไก่ป่าสีเทา
+                    </p>
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        ในระหว่างการปฏิสนธิของบรรพบุรุษไก่สองตัว (Proto-chickens) เกิดการกลายพันธุ์ของ DNA (Genetic Mutation) ขึ้นในเซลล์สืบพันธุ์ สเปิร์มและไข่ที่ปฏิสนธิกันได้สร้างรหัสพันธุกรรมใหม่ที่เป็น <strong>"ไก่ตัวแรกของโลก"</strong> ขึ้นมา โดยไซโกตนั้นบรรจุอยู่ภายใน <strong>"ไข่"</strong>
+                    </p>
+                    <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700 text-xs sm:text-sm text-slate-300 space-y-1">
+                        <p class="font-semibold text-amber-400">สรุปทางพันธุศาสตร์:</p>
+                        <p>สัตว์ตัวแรกที่เป็นไก่ทางพันธุกรรม เริ่มต้นชีวิตในฐานะเซลล์เดี่ยวภายในไข่ ดังนั้น **ไข่จึงเกิดก่อนตัวไก่**</p>
+                    </div>
+                </div>
+                <div class="lg:col-span-5">
+                    <div class="glass-card p-4 rounded-2xl border border-slate-700 text-center">
+                        <img src="https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=800&q=80" alt="DNA Strand and Biology" class="rounded-xl w-full h-64 object-cover mb-3">
+                        <span class="text-xs text-slate-400 italic">ภาพจำลอง: การกลายพันธุ์ของรหัสพันธุกรรมในเซลล์สืบพันธุ์ระดับโมเลกุล</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Perspective 2: Protein OC-17 Study -->
+            <div class="grid lg:grid-cols-12 gap-8 items-center pt-8 border-t border-slate-800/80">
+                <div class="lg:col-span-5 order-2 lg:order-1">
+                    <div class="glass-card p-4 rounded-2xl border border-slate-700 text-center">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" alt="Microscope Research" class="rounded-xl w-full h-64 object-cover mb-3">
+                        <span class="text-xs text-slate-400 italic">การวิจัยระดับผลึกวิทยาโดยมหาวิทยาลัยเชฟฟิลด์และวอริก</span>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 order-1 lg:order-2 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-500/10 text-blue-400 text-xs font-semibold">
+                        <i class="fa-solid fa-flask"></i> Crystal Biochemistry
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">2. มุมมองโปรตีนเคมี: การค้นพบโปรตีน Ovocleidin-17 (OC-17)</h3>
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        ในปี ค.ศ. 2010 ทีมนักวิจัยจากมหาวิทยาลัย Sheffield และ Warwick ประเทศอังกฤษ นำโดย Prof. Colin Freeman ใช้ซูเปอร์คอมพิวเตอร์ <em class="text-amber-300">HECToR</em> จำลองกระบวนการสร้างเปลือกไข่ไก่
+                    </p>
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        ผลการวิจัยพบว่า โปรตีน <strong>OC-17</strong> ทำหน้าที่เป็นตัวเร่งการตกผลึกของแคลเซียมคาร์บอเนต (Calcite Crystals) ให้กลายเป็นเปลือกไข่แข็งภายในเวลา 24 ชั่วโมง และโปรตีน OC-17 นี้ <strong>ผลิตขึ้นได้เฉพาะในรังไข่ของแม่ไก่เท่านั้น</strong>
+                    </p>
+                    <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700 text-xs sm:text-sm text-slate-300 space-y-1">
+                        <p class="font-semibold text-blue-400">สรุปทางเคมีโปรตีน:</p>
+                        <p>ถ้าไม่มีแม่ไก่ผลิตโปรตีน OC-17 เปลือกไข่ไก่จะไม่สามารถแข็งตัวเป็นรูปเป็นร่างได้ ดังนั้น **ไก่ต้องเกิดก่อนไข่ไก่**</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-700 overflow-x-auto">
+                <h3 class="text-xl font-bold text-white mb-4">ตารางเปรียบเทียบข้อสรุปทางวิทยาศาสตร์</h3>
+                <table class="w-full text-left text-sm border-collapse min-w-[600px]">
+                    <thead>
+                        <tr class="border-b border-slate-700 text-slate-300">
+                            <th class="py-3 px-4 font-semibold">มุมมองวิจัย</th>
+                            <th class="py-3 px-4 font-semibold">คำจำกัดความของ "ไข่"</th>
+                            <th class="py-3 px-4 font-semibold">สิ่งที่เกิดก่อน</th>
+                            <th class="py-3 px-4 font-semibold">หลักฐานอ้างอิง</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                        <tr>
+                            <td class="py-3 px-4 font-medium text-amber-400">ชีววิทยาวิวัฒนาการ</td>
+                            <td class="py-3 px-4">ไข่ที่มีเปลือกหุ้ม (Amniotic Egg)</td>
+                            <td class="py-3 px-4 font-bold text-emerald-400">ไข่เกิดก่อน (~340 ล้านปี)</td>
+                            <td class="py-3 px-4 text-xs text-slate-400">ซากฟอสซิลสัตว์เลื้อยคลานยุคคาร์โบนิเฟอรัส</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-medium text-amber-400">เคมีโปรตีนผลึกวิทยา</td>
+                            <td class="py-3 px-4">ไข่ไก่โดยเฉพาะ (Chicken Egg)</td>
+                            <td class="py-3 px-4 font-bold text-blue-400">ไก่เกิดก่อน</td>
+                            <td class="py-3 px-4 text-xs text-slate-400">โครงสร้างโปรตีน OC-17 (Sheffield Univ.)</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-medium text-amber-400">พันธุศาสตร์อณูชีววิทยา</td>
+                            <td class="py-3 px-4">ไข่ไซโกตไก่ตัวแรก (First Chicken Zygote)</td>
+                            <td class="py-3 px-4 font-bold text-emerald-400">ไข่เกิดก่อน</td>
+                            <td class="py-3 px-4 text-xs text-slate-400">การกลายพันธุ์ของ DNA ในเซลล์สืบพันธุ์</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 3: PHILOSOPHICAL & RELIGIOUS VIEW ================= -->
+        <section id="page-philosophy" class="page-section space-y-10">
+            <div class="border-b border-slate-800 pb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">มุมมองทางความคิดและปรัชญา</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">ปรัชญาตะวันตก, ตะวันออก และศาสนา</h2>
+                <p class="text-slate-400 mt-2">การตีความโจทย์ไก่กับไข่ในฐานะอุปมาอุปไมยเรื่อง "เหตุและผล" (Causality) และ "จุดเริ่มต้นของจักรวาล"</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Aristotle -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-700/70 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-landmark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">ปรัชญากรีกโบราณ (Aristotle)</h3>
+                    <p class="text-xs text-amber-400 mb-3 font-mono">384 - 322 ก่อนคริสตกาล</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        อริสโตเติลสรุปว่าทั้งไก่และไข่เกิดขึ้นพร้อมกันในรูปแบบวงจรไร้จุดเริ่มต้น เขามองว่า **ความเป็นไปได้ (Potentiality)** และ **ความเป็นจริง (Actuality)** อยู่คู่กัน สิ่งที่มีอยู่แล้วในโลกคือกระบวนการธรรมชาติที่ไม่สิ้นสุด
+                    </p>
+                </div>
+
+                <!-- Plutarch -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-700/70 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-scroll"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">มอร์ราเลีย (Plutarch)</h3>
+                    <p class="text-xs text-amber-400 mb-3 font-mono">ค.ศ. 46 - 119</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        พลูตาร์คตั้งคำถามในหนังสือ <em class="text-amber-200">Table Talk</em> ว่า ปัญหานี้มิใช่เพียงเรื่องสัตว์ แต่เปรียบเสมือนปัญหาระดับจักรวาลวิทยา ว่าโลกเรามีจุดเริ่มต้นแรกสุด (First Cause) หรือเดินเป็นวงจรอนันต์
+                    </p>
+                </div>
+
+                <!-- Buddhism & Karma -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-700/70 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-yin-yang"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">พุทธปรัชญา (ปฏิจจสมุปบาท)</h3>
+                    <p class="text-xs text-amber-400 mb-3 font-mono">การเกิดขึ้นพร้อมแห่งธรรมสังขต</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        มองปัญหานี้ผ่านหลัก **ปฏิจจสมุปบาท** คือ "เมื่อสิ่งนี้มี สิ่งนี้จึงมี" ไก่และไข่เป็นเหตุปัจจัยซึ่งกันและกันแบบอิทัปปัจจยตา ไม่จำเป็นต้องหาปฐมเหตุเดี่ยว แต่เป็นสังสารวัฏแห่งเหตุและผล
+                    </p>
+                </div>
+
+                <!-- Judeo-Christian Creationism -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-700/70 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-book-bible"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">แนวคิดการสร้างโลก (Creationism)</h3>
+                    <p class="text-xs text-amber-400 mb-3 font-mono">ศาสนาเทวนิยม</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        ตามคัมภีร์ปฐมกาล (Genesis) พระเจ้าทรงสร้างสิ่งมีชีวิตและนกบนท้องฟ้าให้มีความสมบูรณ์พร้อมที่จะขยายพันธุ์ได้ทันที ดังนั้นในมุมมองเทวนิยมดั้งเดิม **สัตว์ (ไก่) จึงถูกสร้างขึ้นก่อน** แล้วจึงออกไข่
+                    </p>
+                </div>
+
+                <!-- Modern Causality Paradox -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-700/70 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-infinity"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">ตรรกศาสตร์สมัยใหม่ & Circular Logic</h3>
+                    <p class="text-xs text-amber-400 mb-3 font-mono">การอ้างเหตุผลแบบวงกลม</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        "ไก่มาจากไข่ แต่ไข่มาจากไก่" เป็นตัวอย่างคลาสสิกของ **Circular Reasoning** นักตรรกศาสตร์ใช้ตัวอย่างนี้เพื่อชี้ให้เห็นข้อจำกัดของภาษาและการตั้งคำถามที่ไม่นิยามขอบเขตให้ชัดเจน
+                    </p>
+                </div>
+
+                <!-- Quantum Physics Paradox -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-700/70 hover:border-amber-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-atom"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">ควอนตัมฟิสิกส์ (Indefinite Causal Order)</h3>
+                    <p class="text-xs text-amber-400 mb-3 font-mono">University of Queensland (2018)</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        การทดลองทางควอนตัมแสดงให้เห็นว่า ในระดับอนุภาคย่อย เหตุและผลสามารถเกิดขึ้นพร้อมกันได้โดยไม่มีลำดับเวลาที่แน่นอน (Indefinite Causal Order) เสมือนทั้งสองเกิดพร้อมกัน
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 4: EVOLUTIONARY TIMELINE ================= -->
+        <section id="page-timeline" class="page-section space-y-10">
+            <div class="border-b border-slate-800 pb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">ลำดับเวลาทางธรณีวิทยา</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">เส้นทางวิวัฒนาการ 340 ล้านปี</h2>
+                <p class="text-slate-400 mt-2">คลิกที่แต่ละช่วงเวลาเพื่อดูรายละเอียดซากฟอสซิลและการเปลี่ยนแปลงทางพันธุกรรม</p>
+            </div>
+
+            <!-- Timeline Visualiser Component -->
+            <div class="relative pl-6 border-l-2 border-amber-500/40 space-y-10 ml-2 sm:ml-6">
+                
+                <!-- Event 1 -->
+                <div class="relative group cursor-pointer" onclick="toggleTimelineDetail('time-1')">
+                    <div class="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-slate-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-700 hover:border-amber-500/60 transition-all">
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">340 ล้านปีก่อน (ยุคคาร์โบนิเฟอรัส)</span>
+                        <h3 class="text-xl font-bold text-white mt-2">การกำเนิดไข่ที่มีเปลือกหุ้ม (Amniotic Egg)</h3>
+                        <p class="text-slate-300 text-sm mt-1">สัตว์เลื้อยคลานโบราณวิวัฒนาการไข่เปลือกนิ่มและเปลือกแข็งขึ้นมาเป็นครั้งแรก ทำให้พวกมันสามารถขึ้นมาวางไข่บนบกได้โดยไม่ต้องพึ่งพิงน้ำเหมือนสัตว์ครึ่งบกครึ่งน้ำ</p>
+                        
+                        <div id="time-1" class="hidden mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 space-y-2">
+                            <p class="text-amber-300 font-semibold">ข้อเท็จจริงสำคัญ:</p>
+                            <p>นี่คือจุดเริ่มต้นของ "ไข่" ในความหมายทางชีววิทยา ซึ่งเกิดขึ้นก่อนที่จะมีนกหรือไก่ถือกำเนิดขึ้นบนโลกมากกว่า 300 ล้านปี</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="relative group cursor-pointer" onclick="toggleTimelineDetail('time-2')">
+                    <div class="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-slate-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-700 hover:border-amber-500/60 transition-all">
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">150 ล้านปีก่อน (ยุคจูแรสซิก)</span>
+                        <h3 class="text-xl font-bold text-white mt-2">อาร์เคออปเทอริกซ์ (Archaeopteryx) - รอยต่อระหว่างไดโนเสาร์และนก</h3>
+                        <p class="text-slate-300 text-sm mt-1">ไดโนเสาร์เทอโรพอด (Theropod) เริ่มพัฒนานกมีขนโบราณ วางไข่เปลือกแข็งที่มีโครงสร้างผลึกแคลเซียมคล้ายนกปัจจุบัน</p>
+                        
+                        <div id="time-2" class="hidden mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 space-y-2">
+                            <p class="text-amber-300 font-semibold">ข้อเท็จจริงสำคัญ:</p>
+                            <p>ฟอสซิล Archaeopteryx ยืนยันว่าสัตว์กลุ่มสายพันธุ์นกทั้งหมดสืบเชื้อสายมาจากไดโนเสาร์กินเนื้อขนาดเล็ก และพวกมันสืบพันธุ์ด้วยการวางไข่แล้ว</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="relative group cursor-pointer" onclick="toggleTimelineDetail('time-3')">
+                    <div class="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-slate-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-700 hover:border-amber-500/60 transition-all">
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">58,000 ปีก่อน</span>
+                        <h3 class="text-xl font-bold text-white mt-2">บรรพบุรุษไก่ป่า (Proto-Chicken) และการกลายพันธุ์ครั้งประวัติศาสตร์</h3>
+                        <p class="text-slate-300 text-sm mt-1">ไก่ป่าขี้เรื้อน (Gallus gallus) ผสมพันธุ์และเกิดการปฏิสนธิที่มีการกลายพันธุ์ของ DNA ในระดับไซโกต เกิดเป็นรหัสพันธุกรรมของไก่บ้านสายพันธุ์ใหม่</p>
+                        
+                        <div id="time-3" class="hidden mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 space-y-2">
+                            <p class="text-amber-300 font-semibold">ข้อเท็จจริงสำคัญ:</p>
+                            <p>การผสมและกลายพันธุ์นี้เกิดขึ้นภายในฟองไข่ ทำให้ **"ไข่ไก่ใบแรก"** เกิดขึ้นก่อนที่จะฟักออกมาเป็น **"ไก่บ้านตัวแรก"**</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 4 -->
+                <div class="relative group cursor-pointer" onclick="toggleTimelineDetail('time-4')">
+                    <div class="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-slate-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-700 hover:border-amber-500/60 transition-all">
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">8,000 ปีก่อน - ปัจจุบัน</span>
+                        <h3 class="text-xl font-bold text-white mt-2">การนำมาเลี้ยงเป็นสัตว์บ้าน (Domestication of Chickens)</h3>
+                        <p class="text-slate-300 text-sm mt-1">มนุษย์ในเอเชียตะวันออกเฉียงใต้และอินเดียเริ่มนำไก่ป่ามาเลี้ยง และคัดเลือกสายพันธุ์จนแพร่กระจายไปทั่วโลกมากกว่า 33,000 ล้านตัวในปัจจุบัน</p>
+                        
+                        <div id="time-4" class="hidden mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 space-y-2">
+                            <p class="text-amber-300 font-semibold">ข้อเท็จจริงสำคัญ:</p>
+                            <p>การคัดเลือกสายพันธุ์โดยมนุษย์ทำให้ไก่บ้านในปัจจุบันสามารถออกไข่ได้เกือบทุกวัน แตกต่างจากไก่ป่าในอดีตอย่างสิ้นเชิง</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= PAGE 5: INTERACTIVE LAB & QUIZ ================= -->
+        <section id="page-lab" class="page-section space-y-12">
+            <div class="border-b border-slate-800 pb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">การทดลองและการทดสอบ</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">ห้องทดลองพันธุกรรม & ควิซวัดความรู้</h2>
+                <p class="text-slate-400 mt-2">จำลองการสร้างไข่ด้วยโปรตีน OC-17 และทดสอบความเข้าใจของคุณจากงานวิจัย</p>
+            </div>
+
+            <!-- Interactive Simulator Tool -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-700 space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-flask-vial"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">เครื่องจำลองสังเคราะห์เปลือกไข่ (OC-17 Protein Lab)</h3>
+                        <p class="text-xs text-slate-400">ทดลองปรับเปลี่ยนระดับโปรตีน OC-17 และแคลเซียมเพื่อสังเคราะห์เปลือกไข่ไก่</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center pt-2">
+                    <div class="space-y-5">
+                        <!-- Slider 1 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+                                <span>ระดับโปรตีน OC-17 (จากรังไข่ไก่)</span>
+                                <span id="oc17-val-label" class="text-amber-400">50%</span>
+                            </div>
+                            <input type="range" id="oc17-slider" min="0" max="100" value="50" oninput="updateEggSim()" class="w-full accent-amber-500 bg-slate-800 rounded-lg cursor-pointer h-2">
+                        </div>
+
+                        <!-- Slider 2 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+                                <span>ความหนาแน่นแคลเซียมคาร์บอเนต (Calcite)</span>
+                                <span id="calcite-val-label" class="text-blue-400">50%</span>
+                            </div>
+                            <input type="range" id="calcite-slider" min="0" max="100" value="50" oninput="updateEggSim()" class="w-full accent-blue-500 bg-slate-800 rounded-lg cursor-pointer h-2">
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-xs space-y-1">
+                            <span class="text-slate-400">สถานะการสังเคราะห์:</span>
+                            <p id="sim-status-text" class="font-bold text-amber-400">กำลังผสมสารละลายผลึก...</p>
+                        </div>
+                    </div>
+
+                    <!-- Visualizer Canvas Display -->
+                    <div class="flex flex-col items-center justify-center p-6 bg-slate-950/80 rounded-2xl border border-slate-800 min-h-[220px]">
+                        <div id="sim-egg-graphic" class="w-32 h-44 rounded-[50%_50%_50%_50%_/_60%_60%_40%_40%] bg-gradient-to-b from-amber-100 to-amber-300 transition-all duration-300 shadow-xl flex items-center justify-center text-slate-900 font-bold text-xs p-4 text-center">
+                            เปลือกไข่สมบูรณ์
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Engine Section -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-700 space-y-6">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap text-amber-400"></i> ควิซทดสอบความเข้าใจ (5 ข้อ)
+                    </h3>
+                    <span id="quiz-score-badge" class="px-3 py-1 rounded-full bg-slate-800 text-xs font-semibold text-amber-400 border border-slate-700">คะแนน: 0/5</span>
+                </div>
+
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Quiz Item 1 -->
+                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
+                        <p class="text-sm font-semibold text-white">1. โปรตีน Ovocleidin-17 (OC-17) มีบทบาทสำคัญอย่างไรในการไขปริศนานี้?</p>
+                        <div class="space-y-2 text-xs">
+                            <button onclick="checkAnswer(1, 'A')" class="q-btn-1-A w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">A. เป็นยีนที่ควบคุมการฟักไข่ของไก่ป่า</button>
+                            <button onclick="checkAnswer(1, 'B')" class="q-btn-1-B w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">B. เป็นโปรตีนเร่งการตกผลึกแคลเซียมสร้างเปลือกไข่ ซึ่งพบเฉพาะในรังไข่ไก่</button>
+                            <button onclick="checkAnswer(1, 'C')" class="q-btn-1-C w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">C. เป็นสารเคมีที่พบเฉพาะในไข่ไดโนเสาร์</button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Item 2 -->
+                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
+                        <p class="text-sm font-semibold text-white">2. หากมองในเชิงชีววิทยาวิวัฒนาการ "ไข่ที่มีเปลือกหุ้ม" (Amniotic Egg) เกิดขึ้นเมื่อกี่ปีก่อน?</p>
+                        <div class="space-y-2 text-xs">
+                            <button onclick="checkAnswer(2, 'A')" class="q-btn-2-A w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">A. ประมาณ 10,000 ปีก่อน</button>
+                            <button onclick="checkAnswer(2, 'B')" class="q-btn-2-B w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">B. ประมาณ 340 ล้านปีก่อน</button>
+                            <button onclick="checkAnswer(2, 'C')" class="q-btn-2-C w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">C. พร้อมกับการถือกำเนิดมนุษย์ยุคแรก</button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Item 3 -->
+                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
+                        <p class="text-sm font-semibold text-white">3. ในทางพันธุศาสตร์ ไก่ตัวแรกของโลกถือกำเนิดขึ้นจากอะไร?</p>
+                        <div class="space-y-2 text-xs">
+                            <button onclick="checkAnswer(3, 'A')" class="q-btn-3-A w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">A. การกลายพันธุ์ของ DNA ในเซลล์ไซโกตภายในไข่ของบรรพบุรุษนก (Proto-chicken)</button>
+                            <button onclick="checkAnswer(3, 'B')" class="q-btn-3-B w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">B. แม่ไก่ป่าโตเต็มวัยเปลี่ยนสายพันธุ์กะทันหัน</button>
+                            <button onclick="checkAnswer(3, 'C')" class="q-btn-3-C w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-all text-slate-300">C. เกิดจากการสังเคราะห์ในห้องทดลองยุคโบราณ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 6: REFERENCES ================= -->
+        <section id="page-references" class="page-section space-y-10">
+            <div class="border-b border-slate-800 pb-6">
+                <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">การอ้างอิงทางวิชาการ</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">แหล่งข้อมูลและงานวิจัยที่น่าเชื่อถือ</h2>
+                <p class="text-slate-400 mt-2">รวบรวมวารสารวิชาการ มหาวิทยาลัยวิจัย และผลงานตีพิมพ์ระดับสากล</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Ref 1 -->
+                <div class="glass-card p-5 rounded-xl border border-slate-800 hover:border-slate-700 transition-all flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                    <div class="space-y-1">
+                        <span class="text-xs text-amber-400 font-mono font-bold">[1] University of Sheffield & Warwick (2010)</span>
+                        <h4 class="text-white font-semibold text-base">Structural Control of Crystal Nucleation by Eggshell Protein OC-17</h4>
+                        <p class="text-xs text-slate-400">การศึกษาโครงสร้างคริสตัลและการจำลองด้วยซูเปอร์คอมพิวเตอร์ HECToR เผยบทบาทของโปรตีน OC-17 ในรังไข่ไก่</p>
+                    </div>
+                    <a href="https://www.sciencedaily.com/releases/2010/07/100713085702.htm" target="_blank" rel="noopener noreferrer" class="shrink-0 px-4 py-2 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-xs font-semibold text-slate-300 transition-all text-center">
+                        อ่านบทความ <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Ref 2 -->
+                <div class="glass-card p-5 rounded-xl border border-slate-800 hover:border-slate-700 transition-all flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                    <div class="space-y-1">
+                        <span class="text-xs text-amber-400 font-mono font-bold">[2] Cell & Nature Evolution Journals</span>
+                        <h4 class="text-white font-semibold text-base">The Amniote Egg and Early Evolutionary Radiation</h4>
+                        <p class="text-xs text-slate-400">งานวิจัยทางชีววิทยาบรรพกาลวิเคราะห์ซากฟอสซิลไข่เยื่อหุ้มครรภ์ยุคคาร์โบนิเฟอรัส (340 ล้านปีก่อน)</p>
+                    </div>
+                    <a href="https://www.nature.com" target="_blank" rel="noopener noreferrer" class="shrink-0 px-4 py-2 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-xs font-semibold text-slate-300 transition-all text-center">
+                        Nature Journal <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Ref 3 -->
+                <div class="glass-card p-5 rounded-xl border border-slate-800 hover:border-slate-700 transition-all flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                    <div class="space-y-1">
+                        <span class="text-xs text-amber-400 font-mono font-bold">[3] Royal Society Open Science (2018)</span>
+                        <h4 class="text-white font-semibold text-base">Experimental verification of indefinite causal structures in Quantum Physics</h4>
+                        <p class="text-xs text-slate-400">งานวิจัยจาก University of Queensland ประเทศออสเตรเลีย ว่าด้วยลำดับเหตุและผลที่ไม่แน่นอนในระดับฟิสิกส์ควอนตัม</p>
+                    </div>
+                    <a href="https://royalsocietypublishing.org" target="_blank" rel="noopener noreferrer" class="shrink-0 px-4 py-2 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-xs font-semibold text-slate-300 transition-all text-center">
+                        Royal Society <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Ref 4 -->
+                <div class="glass-card p-5 rounded-xl border border-slate-800 hover:border-slate-700 transition-all flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                    <div class="space-y-1">
+                        <span class="text-xs text-amber-400 font-mono font-bold">[4] Book Reference</span>
+                        <h4 class="text-white font-semibold text-base">The Magic of Reality by Richard Dawkins</h4>
+                        <p class="text-xs text-slate-400">คำอธิบายเชิงชีววิทยาวิวัฒนาการเกี่ยวกับแนวคิดสายพันธุ์และการเปลี่ยนผ่านของ DNA ในสิ่งมีชีวิต</p>
+                    </div>
+                    <span class="shrink-0 text-xs text-slate-500 font-mono">ISBN: 978-1439192818</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-slate-950/80 py-8 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-3">
+            <p>© 2026 Interactive Science & Philosophy Research Hub. ทั้งหมดเพื่อการศึกษาและให้ความรู้.</p>
+            <p class="text-slate-600">สร้างด้วย HTML5 + Tailwind CSS + Vanilla JavaScript (Single File Web App)</p>
+        </div>
+    </footer>
+
+    <!-- README MODAL DIALOG CONTAINER -->
+    <div id="readme-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-card w-full max-w-3xl rounded-2xl border border-slate-700 max-h-[85vh] flex flex-col shadow-2xl">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800">
+                <div class="flex items-center gap-2 text-amber-400 font-bold text-base">
+                    <i class="fa-solid fa-file-code"></i> README.md (คู่มือและโครงสร้างโครงการ)
+                </div>
+                <button onclick="toggleReadmeModal()" class="text-slate-400 hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Body (Markdown Content Preview) -->
+            <div class="p-6 overflow-y-auto space-y-4 text-slate-300 text-sm leading-relaxed font-mono bg-slate-900/90">
+                <h1 class="text-xl font-bold text-amber-400 font-sans border-b border-slate-800 pb-2">Chicken vs Egg Research Single-Page Platform</h1>
+                
+                <h3 class="text-base font-semibold text-white font-sans mt-4">📌 ภาพรวมโครงการ</h3>
+                <p>เว็บไซต์ให้ความรู้เชิงลึกเปรียบเทียบข้อสรุปทางวิทยาศาสตร์ ปรัชญา และศาสนา ในประเด็น "ไก่กับไข่อะไรเกิดก่อนกัน" ในรูปแบบ SPA Single HTML File ออกแบบตามหลัก Responsive Design และพร้อมติดตั้งบน GitHub Pages</p>
+
+                <h3 class="text-base font-semibold text-white font-sans mt-4">📂 ฟีเจอร์หลัก (Features)</h3>
+                <ul class="list-disc pl-5 space-y-1 text-xs">
+                    <td><strong>Multi-Page Single File:</strong> สลับหน้าได้อย่างลื่นไหลผ่าน JavaScript SPA Navigation Engine</td>
+                    <td><strong>Interactive Voting Poll:</strong> ระบบโหวตความคิดเห็นเรียลไทม์พร้อมการคำนวณสัดส่วน %</td>
+                    <td><strong>Evolution Timeline:</strong> ย้อนเวลา 340 ล้านปี พร้อมการแสดงผลข้อมูลแบบซ่อน-ขยาย</td>
+                    <td><strong>Protein Lab Simulator:</strong> เครื่องจำลองผลของโปรตีน OC-17 ต่อการตกผลึกเปลือกไข่</td>
+                    <td><strong>Quiz Engine:</strong> ระบบแบบทดสอบวัดความรู้พร้อมคำนวณคะแนนอัตโนมัติ</td>
+                </ul>
+
+                <h3 class="text-base font-semibold text-white font-sans mt-4">🛠 เทคโนโลยีที่ใช้</h3>
+                <p class="text-xs">HTML5, Tailwind CSS CDN, FontAwesome 6, Google Fonts (Prompt & Kanit), Pure Vanilla JavaScript (ES6)</p>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-3 border-t border-slate-800 flex justify-end">
+                <button onclick="toggleReadmeModal()" class="px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs">
+                    ปิดหน้าต่าง
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC & ROUTING ENGINE -->
+    <script>
+        // --- State Management ---
+        let votes = { egg: 1420, chicken: 1028 };
+        let quizAnswers = { 1: false, 2: false, 3: false };
+        let userScore = 0;
+
+        // --- Page Router Engine ---
+        function navigateTo(pageId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active-page'));
+
+            // Show selected section
+            const targetSection = document.getElementById('page-' + pageId);
+            if (targetSection) {
+                targetSection.classList.add('active-page');
+            }
+
+            // Update Nav Active Styling
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- Mobile Menu Toggle ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // --- Voting Poll Logic ---
+        function castVote(type) {
+            if (type === 'egg') votes.egg++;
+            if (type === 'chicken') votes.chicken++;
+
+            const total = votes.egg + votes.chicken;
+            const eggPct = Math.round((votes.egg / total) * 100);
+            const chickenPct = 100 - eggPct;
+
+            document.getElementById('bar-egg').style.width = eggPct + '%';
+            document.getElementById('bar-chicken').style.width = chickenPct + '%';
+
+            document.getElementById('poll-egg-label').innerText = `ไข่: ${eggPct}% (${votes.egg.toLocaleString()} เสียง)`;
+            document.getElementById('poll-chicken-label').innerText = `ไก่: ${chickenPct}% (${votes.chicken.toLocaleString()} เสียง)`;
+            
+            document.getElementById('poll-status').innerText = 'ขอบคุณสำหรับโหวตของคุณ! ผลโหวตอัปเดตแล้ว';
+            document.getElementById('poll-status').classList.add('text-amber-400');
+        }
+
+        // --- Timeline Detail Accordion Toggle ---
+        function toggleTimelineDetail(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.toggle('hidden');
+            }
+        }
+
+        // --- OC-17 Protein Lab Simulator Logic ---
+        function updateEggSim() {
+            const oc17 = parseInt(document.getElementById('oc17-slider').value);
+            const calcite = parseInt(document.getElementById('calcite-slider').value);
+            
+            document.getElementById('oc17-val-label').innerText = oc17 + '%';
+            document.getElementById('calcite-val-label').innerText = calcite + '%';
+
+            const eggGraphic = document.getElementById('sim-egg-graphic');
+            const statusText = document.getElementById('sim-status-text');
+
+            if (oc17 < 30) {
+                eggGraphic.style.opacity = '0.3';
+                eggGraphic.style.borderRadius = '30%';
+                eggGraphic.innerText = 'เปลือกไข่นิ่ม/ไม่ขึ้นรูป (ขาด OC-17)';
+                eggGraphic.className = "w-32 h-44 bg-red-900/50 text-red-200 transition-all duration-300 flex items-center justify-center text-xs p-2 text-center rounded-2xl border border-red-500/50";
+                statusText.innerText = '⚠️ การตกผลึกล้มเหลว: ปริมาณโปรตีน OC-17 จากรังไข่ไม่เพียงพอ';
+                statusText.className = 'font-bold text-red-400';
+            } else if (calcite < 30) {
+                eggGraphic.style.opacity = '0.5';
+                eggGraphic.innerText = 'เปลือกไข่เปราะบาง';
+                eggGraphic.className = "w-32 h-44 bg-yellow-900/50 text-yellow-200 transition-all duration-300 flex items-center justify-center text-xs p-2 text-center rounded-2xl border border-yellow-500/50";
+                statusText.innerText = '⚠️ แคลเซียมต่ำ: เปลือกไข่แตกหักง่าย ไม่สามารถฟักเป็นตัวได้';
+                statusText.className = 'font-bold text-yellow-400';
+            } else {
+                eggGraphic.style.opacity = '1';
+                eggGraphic.innerText = 'ไข่ไก่สมบูรณ์แข็งแรง';
+                eggGraphic.className = "w-32 h-44 rounded-[50%_50%_50%_50%_/_60%_60%_40%_40%] bg-gradient-to-b from-amber-100 to-amber-300 text-slate-900 shadow-xl transition-all duration-300 flex items-center justify-center font-bold text-xs p-4 text-center";
+                statusText.innerText = '✅ สังเคราะห์เปลือกไข่ไก่สำเร็จ! ผลึก Calcite เรียงตัวสมบูรณ์ด้วย OC-17';
+                statusText.className = 'font-bold text-emerald-400';
+            }
+        }
+
+        // --- Quiz System Logic ---
+        const correctAnswers = { 1: 'B', 2: 'B', 3: 'A' };
+
+        function checkAnswer(qNum, choice) {
+            const isCorrect = choice === correctAnswers[qNum];
+            const btnKey = `.q-btn-${qNum}-${choice}`;
+            const btn = document.querySelector(btnKey);
+
+            if (isCorrect) {
+                btn.classList.remove('bg-slate-800');
+                btn.classList.add('bg-emerald-600', 'text-white', 'font-bold');
+                if (!quizAnswers[qNum]) {
+                    userScore++;
+                    quizAnswers[qNum] = true;
+                }
+            } else {
+                btn.classList.remove('bg-slate-800');
+                btn.classList.add('bg-red-600', 'text-white');
+            }
+
+            document.getElementById('quiz-score-badge').innerText = `คะแนน: ${userScore}/3`;
+        }
+
+        // --- README Modal Handler ---
+        function toggleReadmeModal() {
+            const modal = document.getElementById('readme-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Initialize default active page
+        window.onload = function() {
+            navigateTo('home');
+            updateEggSim();
+        }
+    </script>
+</body>
+</html>
+```
